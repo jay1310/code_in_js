@@ -194,6 +194,9 @@ console.log("Q11: ", centeredAverage([1, 2, 3, 4, 100]), centeredAverage([1, 1, 
 
 //Q12: Return the sum of the numbers in the array, returning 0 for an empty array. 
 //     Except the number 13 is very unlucky, so it does not count and numbers that come immediately after a 13 also do not count.
+
+//Q12 Method 1:
+
 function sum_except13(arr) {
     var req_sum = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -206,9 +209,26 @@ function sum_except13(arr) {
     }
     return req_sum;
 }
-console.log("Q12: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
+console.log("Q12M1: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
 
+//Q12 Method 2:
+function sum_except13(arr) {
+  // Set the default index to 0, as slice accepts this as a start value and returns the entire array.
+  let index = 0;
+  
+  // check if the array contains 13, if the indexOf is ran without a number 13 in the array.
+  // The method retuns a -1 which slice will enterpret as starting from the last position.
+  // Which will just sum the last number.
+  if (arr.includes(13)) {
+    index = arr.indexOf(13);
+  }
 
+  // Slice the array to remove the number 13 and the following numbers.
+  // Then reduce the array to sum the remaining numbers, and return the sum.
+  let sum = arr.slice(index).reduce((a, b) => a + b, 0);
+  return sum;
+}
+console.log("Q12M2: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
 
 //Q13: Return the sum of the numbers in the array, except ignore sections of numbers starting with a 6 and extending to the next 7 
 //     (every 6 will be followed by at least one 7). Return 0 for no numbers.
@@ -254,6 +274,7 @@ console.log("Q15: ", lucky13([0, 2, 4]), lucky13([1, 2, 3]), lucky13([1, 2, 4]))
 
 
 //Q16: Given an array of ints, return true if the sum of all the 2's in the array is exactly 8.
+//Q16 Method 1:
 function sum28(arr) {
     var sum_2 = 0;
     arr.forEach(element => {
@@ -267,9 +288,27 @@ function sum28(arr) {
     else
         return false;
 }
-console.log("Q16: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
+console.log("Q16M1: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
 
+//Q16 Method 2:
+function sum28(arr) {
+  // Filter the array by 2 to only return an array with 2's.
+  // Then reduce the array to sum the 2's together.
+  let sum = arr.filter((x) => x == 2).reduce((a, b) => a + b, 0);
+  if (sum === 8) return true;
+  return false;
+}
+console.log("Q16M2: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
 
+//Q16 Method 3:
+function sum28(arr) {
+  // Filter the array by 2 to only return an array with 2's.
+  let filtered = arr.filter((x) => x == 2)
+  // 4 * 2 is 8, so if you have an array with only two's and its length is 4 the sum is 8.
+  if (filtered.length == 4) return true;
+  return false;
+}
+console.log("Q16M3: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
 
 
 //Q17: Given an array of ints, return true if the number of 1's is greater than the number of 4's
