@@ -213,13 +213,18 @@ console.log("Q12M1: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_
 
 //Q12 Method 2:
 function sum_except13(arr) {
-  let index = arr.length - 1;
+  // Set the default index to 0, as slice accepts this as a start value and returns the entire array.
+  let index = 0;
+  
+  // check if the array contains 13, if the indexOf is ran without a number 13 in the array.
+  // The method retuns a -1 which slice will enterpret as starting from the last position.
+  // Which will just sum the last number.
   if (arr.includes(13)) {
     index = arr.indexOf(13);
   }
 
-  if (index = 0) return arr[0];
-
+  // Slice the array to remove the number 13 and the following numbers.
+  // Then reduce the array to sum the remaining numbers, and return the sum.
   let sum = arr.slice(index).reduce((a, b) => a + b, 0);
   return sum;
 }
@@ -287,6 +292,8 @@ console.log("Q16M1: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), 
 
 //Q16 Method 2:
 function sum28(arr) {
+  // Filter the array by 2 to only return an array with 2's.
+  // Then reduce the array to sum the 2's together.
   let sum = arr.filter((x) => x == 2).reduce((a, b) => a + b, 0);
   if (sum === 8) return true;
   return false;
