@@ -193,9 +193,9 @@ function centeredAverage(arr) {
 console.log("Q11: ", centeredAverage([1, 2, 3, 4, 100]), centeredAverage([1, 1, 5, 5, 10, 8, 7]), centeredAverage([-10, -4, -2, -4, -2, 0]));
 
 //Q12: Return the sum of the numbers in the array, returning 0 for an empty array. 
-//     Except the number 13 is very unlucky, so it does not count and numbers that come immediately after a 13 also do not count.
+ //   Except the number 13 is very unlucky, so it does not count and numbers that come immediately after a 13 also do not count.
 function sum_except13(arr) {
-    var req_sum = 0;
+    let req_sum = 0;
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] == 13) {
             if (i + 1 < arr.length)
@@ -206,12 +206,31 @@ function sum_except13(arr) {
     }
     return req_sum;
 }
-console.log("Q12: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
 
+//Q12: Method 2
+
+function sum_except13_M2(arr) {
+    let req_sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === 13) {  
+            if(i + 1 < arr.length)
+                arr.splice(i,2);       
+        }
+        else{
+            req_sum += arr[i];
+        } 
+    }
+    return req_sum;
+}
+
+
+ console.log("Q12: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
+
+console.log("Q12: ", sum_except13_M2([1, 2, 2, 1]), sum_except13_M2([1, 1, 2]), sum_except13_M2([1, 2, 2, 1, 13, 7,13]), sum_except13_M2([1, 5, 2, 1, 13]));
 
 
 //Q13: Return the sum of the numbers in the array, except ignore sections of numbers starting with a 6 and extending to the next 7 
-//     (every 6 will be followed by at least one 7). Return 0 for no numbers.
+   // (every 6 will be followed by at least one 7). Return 0 for no numbers.
 function sum_except_6_to_7(arr) {
     var req_sum = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -228,14 +247,32 @@ function sum_except_6_to_7(arr) {
     }
     return req_sum;
 }
-console.log("Q13: ", sum_except_6_to_7([1, 2, 2]), sum_except_6_to_7([1, 2, 2, 6, 99, 99, 7]), sum_except_6_to_7([1, 1, 6, 7, 2]));
+//Method: 2
+function sum_except_6_to_7_M2(arr) {
+    var req_sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == 6) {
+           const seven=arr.indexOf(7);
+           if(seven>-1)
+           {
+                arr.splice(i,seven-i+1)
+           }
+            req_sum += arr[i] || 0;
+
+    }
+    return req_sum;
+}
+
+ console.log("Q13: ", sum_except_6_to_7([1, 2, 2]), sum_except_6_to_7([1, 2, 2, 6, 99, 99, 7]), sum_except_6_to_7([1, 1, 6, 7, 2]));
+
+console.log("Q13: ", sum_except_6_to_7_M2([1, 2, 2]), sum_except_6_to_7_M2([1, 2, 2, 6, 99, 99, 7]), sum_except_6_to_7_M2([1, 1, 6, 7, 2]));
+
 
 
 //Q14: Given an array of ints, return true if the array contains a 2 next to a 2 somewhere.
 function adjacent2(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
-        if (arr[i] == 2 && arr[i + 1] == 2)
-            return true;
+        return (arr[i] == 2 && arr[i + 1] == 2) && true;
     }
     return false;
 }
@@ -245,12 +282,20 @@ console.log("Q14: ", adjacent2([1, 2, 2]), adjacent2([1, 2, 1, 2]), adjacent2([2
 //Q15: Given an array of ints, return true if the array contains no 1's and no 3's.
 function lucky13(arr) {
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == 1 || arr[i] == 3)
+        if (arr[i] === 1 || arr[i] === 3)
             return false;
     }
     return true;
 }
 console.log("Q15: ", lucky13([0, 2, 4]), lucky13([1, 2, 3]), lucky13([1, 2, 4]));
+
+Method: 2
+function lucky13_M2(arr) {
+    return (arr.indexOf(1) * arr.indexOf(3))>0 ?true :false
+}
+
+console.log("Q15: ", lucky13_M2([0, 2, 4]), lucky13_M2([1, 2, 3]), lucky13_M2([1, 2, 4]));
+
 
 
 //Q16: Given an array of ints, return true if the sum of all the 2's in the array is exactly 8.
@@ -270,7 +315,18 @@ function sum28(arr) {
 console.log("Q16: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
 
 
+Method: 2
 
+function sum28_M2(arr) {
+   let sumTwoFreq=0;
+   for(let i=0;i<arr.length;i++)
+   {
+    if(arr[i]===2)
+    sumTwoFreq++;
+   }
+   return sumTwoFreq===4 ?true :false
+}
+console.log("Q16: ", sum28_M2([2, 3, 2, 2, 4, 2]), sum28_M2([2, 3, 2, 2, 4, 2, 2]), sum28_M2([1, 2, 3, 4]));
 
 //Q17: Given an array of ints, return true if the number of 1's is greater than the number of 4's
 function more14(arr) {
@@ -281,14 +337,11 @@ function more14(arr) {
         if (element == 1) {
             count1++;
         }
-        if (element == 4) {
+      else if (element == 4) {
             count4++;
         }
     });
-    if (count1 > count4)
-        return true;
-    else
-        return false;
+    return (count1 > count4)?true: false;
 }
 console.log("Q17: ", more14([1, 4, 1]), more14([1, 4, 1, 4]), more14([1, 1]));
 
@@ -353,7 +406,7 @@ console.log("Q21: ", no_1_4([1, 2, 3]), no_1_4([1, 2, 3, 4]), no_1_4([2, 3, 4]))
 
 
 
-// Q22: We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in the array, 
+// // Q22: We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in the array, 
 // at least one of the pair is that value. Return true if the given value is everywhere in the array.
 function isEverywhere(arr, value) {
     for (let i = 0; i < arr.length - 1; i++) {
