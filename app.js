@@ -194,6 +194,9 @@ console.log("Q11: ", centeredAverage([1, 2, 3, 4, 100]), centeredAverage([1, 1, 
 
 //Q12: Return the sum of the numbers in the array, returning 0 for an empty array. 
 //     Except the number 13 is very unlucky, so it does not count and numbers that come immediately after a 13 also do not count.
+
+//Q12 Method 1:
+
 function sum_except13(arr) {
     var req_sum = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -206,9 +209,21 @@ function sum_except13(arr) {
     }
     return req_sum;
 }
-console.log("Q12: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
+console.log("Q12M1: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
 
+//Q12 Method 2:
+function sum_except13(arr) {
+  let index = arr.length - 1;
+  if (arr.includes(13)) {
+    index = arr.indexOf(13);
+  }
 
+  if (index = 0) return arr[0];
+
+  let sum = arr.slice(index).reduce((a, b) => a + b, 0);
+  return sum;
+}
+console.log("Q12M2: ", sum_except13([1, 2, 2, 1]), sum_except13([1, 1, 2]), sum_except13([1, 2, 2, 1, 13, 7]), sum_except13([1, 5, 2, 1, 13]));
 
 //Q13: Return the sum of the numbers in the array, except ignore sections of numbers starting with a 6 and extending to the next 7 
 //     (every 6 will be followed by at least one 7). Return 0 for no numbers.
