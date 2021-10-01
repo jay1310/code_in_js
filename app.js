@@ -300,6 +300,16 @@ function sum28(arr) {
 }
 console.log("Q16M2: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
 
+//Q16 Method 3:
+function sum28(arr) {
+  // Filter the array by 2 to only return an array with 2's.
+  let filtered = arr.filter((x) => x == 2)
+  // 4 * 2 is 8, so if you have an array with only two's and its length is 4 the sum is 8.
+  if (filtered.length == 4) return true;
+  return false;
+}
+console.log("Q16M3: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
+
 
 //Q17: Given an array of ints, return true if the number of 1's is greater than the number of 4's
 function more14(arr) {
