@@ -269,6 +269,7 @@ console.log("Q15: ", lucky13([0, 2, 4]), lucky13([1, 2, 3]), lucky13([1, 2, 4]))
 
 
 //Q16: Given an array of ints, return true if the sum of all the 2's in the array is exactly 8.
+//Q16 Method 1:
 function sum28(arr) {
     var sum_2 = 0;
     arr.forEach(element => {
@@ -282,9 +283,15 @@ function sum28(arr) {
     else
         return false;
 }
-console.log("Q16: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
+console.log("Q16M1: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
 
-
+//Q16 Method 2:
+function sum28(arr) {
+  let sum = arr.filter((x) => x == 2).reduce((a, b) => a + b, 0);
+  if (sum === 8) return true;
+  return false;
+}
+console.log("Q16M2: ", sum28([2, 3, 2, 2, 4, 2]), sum28([2, 3, 2, 2, 4, 2, 2]), sum28([1, 2, 3, 4]));
 
 
 //Q17: Given an array of ints, return true if the number of 1's is greater than the number of 4's
