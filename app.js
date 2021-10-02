@@ -61,17 +61,17 @@ console.log("Q2: ", removeX("xxHxix"), removeX("abxxxcd"), removeX("xabxxxcdx"))
 
 
 
-//Q3
+//Q3 
 function charPairs(str) {
     var result = "";
     var len = str.length;
     let i = 0;
     while (i < len) {
         if (i % 4 == 0) {
-            result += str[i];
+            result += str[i];     // Appending every 4th character in the string
 
             if (i + 1 < len)
-                result += str[i + 1];
+                result += str[i + 1]; 
         }
         i += 4;
 
@@ -103,7 +103,7 @@ function adjacent67(arr) {
     var count = 0;
     var len = arr.length;
     for (let i = 0; i < len - 1; i++) {
-        if (arr[i] == 6 && (arr[i + 1] == 6 || arr[i + 1] == 7))
+        if (arr[i] == 6 && (arr[i + 1] == 6 || arr[i + 1] == 7))     // condition to check whether 6 and 7 are consecutively occuring.
             count++;
     }
     return count;
@@ -116,7 +116,7 @@ console.log("Q5: ", adjacent67([6, 6, 2]), adjacent67([6, 7, 2, 6, 6]));
 function triples(arr) {
     var flag = 0;
     for (let i = 0; i < arr.length - 2; i++) {
-        if (arr[i] == arr[i + 1] && arr[i + 1] == arr[i + 2]) {
+        if (arr[i] == arr[i + 1] && arr[i + 1] == arr[i + 2]) {           // checking the similarity of 3 consecutive elements in an array.
             flag = 1;
             break;
         }
@@ -147,7 +147,7 @@ console.log("Q7: ", pattern_271([1, 2, 7, 1]), pattern_271([1, 2, 8, 1]), patter
 //Q8
 function arrayFront9(arr) {
     var len = arr.length;
-    for (let i = 0; i < len && i < 4; i++) {
+    for (let i = 0; i < len && i < 4; i++) {  // Checking whether 9 occurs in first 4 elements atleast once.
         if (arr[i] == 9)
             return true;
     }
@@ -160,8 +160,8 @@ console.log("Q8: ", arrayFront9([1, 2, 9, 3, 4]), arrayFront9([1, 2, 3, 4, 9]), 
 function evenInts(arr) {
     var count = 0;
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 == 0) {
-            count++;
+        if (arr[i] % 2 == 0) {                        
+            count++;                    // Increase counter when there is an even integer.
         }
     }
     return count;
@@ -198,9 +198,9 @@ function sum_except13(arr) {
     var req_sum = 0;
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] == 13) {
-            if (i + 1 < arr.length)
+            if (i + 1 < arr.length)        
                 i++;
-            continue;
+            continue;               // Ignoring the element '13' and summing the rest.
         }
         req_sum += arr[i];
     }
@@ -220,7 +220,7 @@ function sum_except_6_to_7(arr) {
             while (arr[j] != 7) {
                 j++;
             }
-            i = j;
+            i = j;              
         }
         else
             req_sum += arr[i];
@@ -245,7 +245,7 @@ console.log("Q14: ", adjacent2([1, 2, 2]), adjacent2([1, 2, 1, 2]), adjacent2([2
 //Q15: Given an array of ints, return true if the array contains no 1's and no 3's.
 function lucky13(arr) {
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == 1 || arr[i] == 3)
+        if (arr[i] == 1 || arr[i] == 3)           // checking the occurence of 1 and 3 in the array.
             return false;
     }
     return true;
@@ -260,9 +260,9 @@ function sum28(arr) {
         if (sum_2 > 8)
             return false;
         if (element == 2)
-            sum_2 += element;
+            sum_2 += element;           // adding only 2's in the array.
     });
-    if (sum_2 == 8)
+    if (sum_2 == 8)                            
         return true;
     else
         return false;
@@ -278,11 +278,11 @@ function more14(arr) {
     var count4 = 0;
 
     arr.forEach(element => {
-        if (element == 1) {
-            count1++;
+        if (element == 1) {                             
+            count1++;           // Counter for the element '1'
         }
         if (element == 4) {
-            count4++;
+            count4++;           // Counter for the element '4'
         }
     });
     if (count1 > count4)
@@ -300,7 +300,7 @@ function fizzArray(n) {
     arr = new Array(n);
 
     for (let i = 0; i < n; i++)
-        arr[i] = i;
+        arr[i] = i;                 // filling each element of the array with the corresponding index value.
 
     return arr;
 }
@@ -310,8 +310,8 @@ console.log("Q18: ", fizzArray(4), fizzArray(10));
 //Q19: Given an array of ints, return true if every element is a 1 or a 4.
 function only14(arr) {
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] != 1 && arr[i] != 4) {
-            return false;
+        if (arr[i] != 1 && arr[i] != 4) {           
+            return false;               
         }
     }
     return true;
@@ -326,7 +326,7 @@ function stringArray(n) {
     arr = new Array(n);
 
     for (let i = 0; i < n; i++)
-        arr[i] = i.toString();
+        arr[i] = i.toString();          // filling each element of array with the stringified value of the respective indexes.
 
     return arr;
 }
